@@ -1,7 +1,6 @@
 set -euo pipefail
 
 echo "Installing zlib with yum"
-yum -y update
 yum -y install zlib-devel
 
 pushd /tmp
