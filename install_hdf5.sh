@@ -13,7 +13,7 @@ pushd hdf5-$HDF5_VERSION
 chmod u+x autogen.sh
 
 echo "Configuring, building & installing HDF5 ${HDF5_VERSION} to ${HDF5_DIR}"
-./configure --prefix $HDF5_DIR
+./configure --prefix $HDF5_DIR --enable-build-mode=production
 
 make -j $(nproc)
 make install
