@@ -5,6 +5,9 @@ yum -y install zlib-devel
 
 pushd /tmp
 
+# This seems to be needed to find libsz.so.2
+ldconfig
+
 echo "Downloading & unpacking HDF5 ${HDF5_VERSION}"
 #                                   Remove trailing .*, to get e.g. '1.12' ↓
 curl -fsSLO "https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-${HDF5_VERSION%.*}/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
