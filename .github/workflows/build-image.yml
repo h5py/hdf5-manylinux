@@ -1,19 +1,40 @@
-name: Build Image from Dockerfile
+name: Build Image from Dockerfile 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  build:
-    name: Build image
+  build_x86_64_wheels:
+    name: Build image for x86_64
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-
+    
     - name: Publish Image
       uses: matootie/github-docker@v3.1.0
       with:
         accessToken: ${{ secrets.GITHUB_TOKEN }}
         imageName: manylinux2010_x86_64-hdf5
         containerRegistry: true
+        contextName: ./Dockerfile_x86_64
+
+  build_aarch64_wheels:
+    name: Build image for aarch64
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup up QEMU
+      uses: docker/setup-qemu-action@v1
+      with:
+        platforms: arm64
+
+    - name: Publish Image
+      uses: matootie/github-docker@v3.1.0
+      with:
+        accessToken: ${{ secrets.GITHUB_TOKEN }}
+        imageName: manylinux2014_aarch64-hdf5
+        containerRegistry: true
+        contextName: ./Dockerfile_aarch64
