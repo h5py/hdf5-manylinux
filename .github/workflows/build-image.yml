@@ -2,6 +2,7 @@ name: Build Image from Dockerfile
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build_x86_64_wheels:
