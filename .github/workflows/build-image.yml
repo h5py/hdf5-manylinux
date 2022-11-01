@@ -16,7 +16,7 @@ jobs:
       uses: matootie/github-docker@v3.1.0
       with:
         accessToken: ${{ secrets.GITHUB_TOKEN }}
-        imageName: manylinux2010_x86_64-hdf5
+        imageName: manylinux2014_x86_64-hdf5
         containerRegistry: true
         contextName: ./Dockerfile_x86_64
 
