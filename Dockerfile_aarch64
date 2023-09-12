@@ -1,6 +1,6 @@
 FROM quay.io/pypa/manylinux2014_aarch64
 
-ENV HDF5_VERSION 1.12.2
+ENV HDF5_VERSION 1.14.2
 ENV HDF5_DIR /usr/local
 
 COPY install_libaec.sh /tmp/install_libaec.sh
