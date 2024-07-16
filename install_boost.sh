@@ -5,11 +5,14 @@ pushd /tmp
 BOOST_DOWNLOAD_FILE="/cache/boost-cmake.tar.xz"
 curl -fsSL -o $BOOST_DOWNLOAD_FILE https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-cmake.tar.xz
 tar -xf $BOOST_DOWNLOAD_FILE -C /tmp
-pushd boost-${BOOST_VERSION}
+mkdir -p boost-${BOOST_VERSION}/build
+pushd boost-${BOOST_VERSION}/build
 
-./bootstrap.sh --prefix=${BOOST_DIR}
-# We have to explicitly include cmakedir here so that cmake files are installed
-./b2 variant=release toolset=gcc --with-headers --cmakedir=${BOOST_DIR}/lib/cmake install
+cmake -G "Ninja" \
+    -DCMAKE_BUILD_TYPE=release \
+    -DBOOST_INCLUDE_LIBRARIES="algorithm;dll;stacktrace;core;math;numeric/ublas;serialization;multi_array" \
+    ..
+ninja install
 
 popd
 
