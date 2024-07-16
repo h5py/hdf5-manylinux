@@ -27,7 +27,7 @@ jobs:
       with:
         platforms: linux/amd64
         push: ${{ github.ref_name == 'main' }}
-        tags: ghcr.io/${{ github.repository_owner }}/manylinux2014_x86_64-hdf5-boost
+        tags: ghcr.io/cantera/manylinux2014_x86_64-hdf5-boost
         build-args: |
           TARGET_ARCH=x86_64
         cache-from: type=gha
@@ -59,7 +59,7 @@ jobs:
       with:
         platforms: linux/arm64
         push: ${{ github.ref_name == 'main' }}
-        tags: ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64-hdf5-boost
+        tags: ghcr.io/cantera/manylinux2014_aarch64-hdf5-boost
         build-args: |
           TARGET_ARCH=aarch64
         cache-from: type=gha
