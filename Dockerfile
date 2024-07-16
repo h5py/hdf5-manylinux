@@ -17,9 +17,10 @@ ENV HDF5_VERSION=${HDF5_VERSION} \
 
 RUN --mount=type=cache,target=/cache \
     if [[ "$TARGET_ARCH" == "aarch64" ]]; then NINJA_ARCH="-aarch64"; else NINJA_ARCH=""; fi \
-    && echo $NINJA_ARCH \
+    && echo "Getting Ninja for '${NINJA_ARCH}'" \
     && curl -fsSL -o /cache/ninja-linux.zip https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux${NINJA_ARCH}.zip \
-    && unzip /cache/ninja-linux.zip -d /usr/local/bin
+    && unzip /cache/ninja-linux.zip -d /usr/local/bin \
+    && ninja --version
 COPY install_libaec.sh libaec_cmakelists.patch install_hdf5.sh install_boost.sh /tmp/
 RUN --mount=type=cache,target=/cache \
     bash /tmp/install_libaec.sh
