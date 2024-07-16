@@ -1,0 +1,11 @@
+--- CMakeLists.txt	2024-07-16 15:43:44.268427707 +0000
++++ CMakeLists.txt.new	2024-07-16 15:43:38.540403952 +0000
+@@ -12,6 +12,8 @@
+ include(TestBigEndian)
+ test_big_endian(WORDS_BIGENDIAN)
+
++set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
++
+ # Check for __builtin_clzll for faster decoding
+ include(CheckCSourceCompiles)
+ check_c_source_compiles(
