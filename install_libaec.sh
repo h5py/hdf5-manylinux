@@ -17,7 +17,7 @@ mkdir -p libaec-${aec_version}/build
 pushd libaec-$aec_version
 patch -p0 < /tmp/libaec_cmakelists.patch
 pushd build
-cmake -G "Ninja" -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_TESTING=OFF ..
+cmake -G "Ninja" -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF ..
 ninja install
 
 popd
