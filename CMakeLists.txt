@@ -13,7 +13,6 @@ ExternalProject_Add(
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
         -DCMAKE_BUILD_TYPE:STRING=release
-        -DBOOST_INCLUDE_LIBRARIES:STRING="algorithm;dll;stacktrace;core;math;numeric/ublas;serialization;multi_array"
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
 
@@ -25,6 +24,7 @@ ExternalProject_Add(
     PATCH_COMMAND patch -p0 < ${LIBAEC_PATCHFILE}
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=release
         -DCMAKE_INSTALL_LIBDIR:STRING=lib
         -DBUILD_TESTING:BOOL=OFF
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
@@ -37,6 +37,7 @@ ExternalProject_Add(
     URL https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-${LIBHDF5_SHORT_VERSION}/hdf5-${LIBHDF5_VERSION}/src/hdf5-${LIBHDF5_VERSION}.tar.gz
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=release
         -DCMAKE_INSTALL_PREFIX:STRING=/usr/local
         -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
         -DHDF5_ENABLE_SZIP_SUPPORT:BOOL=ON
@@ -52,6 +53,7 @@ ExternalProject_Add(
     URL https://gitlab.com/libeigen/eigen/-/archive/${EIGEN_VERSION}/eigen-${EIGEN_VERSION}.tar.bz2
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=release
         -DEIGEN_BUILD_DOC:BOOL=OFF
         -DBUILD_TESTING:BOOL=OFF
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
@@ -63,11 +65,12 @@ ExternalProject_Add(
     URL https://github.com/jbeder/yaml-cpp/archive/refs/tags/${YAML_CPP_VERSION}.tar.gz
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=release
         -DCMAKE_INSTALL_LIBDIR:STRING=lib
         -DYAML_CPP_DISABLE_UNINSTALL:BOOL=OFF
         -DYAML_CPP_FORMAT_SOURCE:BOOL=OFF
         -DBUILD_TESTING:BOOL=OFF
-        -DBUILD_SHARED_LIBS:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
 
@@ -90,9 +93,11 @@ ExternalProject_Add(
     URL https://github.com/fmtlib/fmt/releases/download/${FMT_VERSION}/fmt-${FMT_VERSION}.zip
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
+        -DCMAKE_BUILD_TYPE:STRING=release
         -DCMAKE_INSTALL_LIBDIR:STRING=lib
         -DFMT_DOC:BOOL=OFF
         -DFMT_TEST:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
 
