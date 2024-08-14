@@ -9,10 +9,10 @@ pushd /tmp
 ldconfig
 
 echo "Downloading & unpacking HDF5 ${HDF5_VERSION}"
-#                                   Remove trailing .*, to get e.g. '1.12' ↓
-curl -fsSLO "https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-${HDF5_VERSION%.*}/hdf5-$HDF5_VERSION/src/hdf5-$HDF5_VERSION.tar.gz"
-tar -xzvf hdf5-$HDF5_VERSION.tar.gz
-pushd hdf5-$HDF5_VERSION
+HDF5_TAG="hdf5_${HDF5_VERSION}"
+curl -fsSLO "https://github.com/HDFGroup/hdf5/archive/refs/tags/${HDF5_TAG}.tar.gz"
+tar -xzvf $HDF5_TAG.tar.gz
+pushd hdf5-$HDF5_TAG
 chmod u+x autogen.sh
 
 echo "Configuring, building & installing HDF5 ${HDF5_VERSION} to ${HDF5_DIR}"
@@ -23,7 +23,7 @@ popd
 
 # Clean up to limit the size of the Docker image
 echo "Cleaning up unnecessary files"
-rm -r hdf5-$HDF5_VERSION
-rm hdf5-$HDF5_VERSION.tar.gz
+rm -r hdf5-$HDF5_TAG
+rm $HDF5_TAG.tar.gz
 
 yum -y erase zlib-devel
