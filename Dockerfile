@@ -2,7 +2,7 @@
 # from TARGETARCH which is defined by docker. The reason is because TARGETARCH=amd64
 # but we need TARGET_ARCH=x86_64
 ARG TARGET_ARCH
-FROM quay.io/pypa/manylinux_2_28_${TARGET_ARCH}:2024-07-15-c746fd8
+FROM quay.io/pypa/manylinux_2_28_${TARGET_ARCH}:2024-10-05-46a4cc2 AS builder
 
 ARG NINJA_VERSION=1.12.1
 # Has to be repeated here so it's imported from the "top level" above the FROM
