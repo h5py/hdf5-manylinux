@@ -16,6 +16,7 @@ RUN --mount=type=cache,target=/cache \
     && curl -fsSL -o /cache/ninja-linux.zip https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux${NINJA_ARCH}.zip \
     && unzip /cache/ninja-linux.zip -d /usr/local/bin \
     && ninja --version \
+    && yum install -y openblas-devel \
     && mkdir build \
     && pushd build \
     && cmake -G Ninja -DLIBAEC_PATCHFILE=/tmp/libaec_cmakelists.patch ../tmp \
