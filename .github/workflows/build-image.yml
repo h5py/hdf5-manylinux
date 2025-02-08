@@ -29,7 +29,7 @@ jobs:
 
   build_aarch64_wheels:
     name: Build image for aarch64
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
 
     steps:
     - uses: actions/checkout@v4
@@ -40,11 +40,6 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Setup up QEMU
-      uses: docker/setup-qemu-action@v3
-      with:
-        platforms: arm64
 
     - name: Build and push
       uses: docker/build-push-action@v6
