@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux2014_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64
 
 ENV HDF5_VERSION 1.14.6
 ENV HDF5_DIR /usr/local
