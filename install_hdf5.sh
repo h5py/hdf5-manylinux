@@ -1,12 +1,23 @@
 set -euo pipefail
 
-echo "Installing zlib with yum"
-yum -y install zlib-devel
+if which yum; then
+    echo "Installing zlib with yum"
+    yum -y install zlib-devel
+else
+    echo "Installing zlib with apk"
+    apk add zlib-dev
+fi
+echo "zlib installation complete"
 
 pushd /tmp
 
-# This seems to be needed to find libsz.so.2
-ldconfig
+if which yum; then
+    # This seems to be needed to find libsz.so.2
+    # using the presence of yum as a proxy to distinguish between
+    # manylinux and musllinux, knowing that musllinux builds don't need this
+    # step, and actually *crash* if it is run.
+    ldconfig
+fi
 
 echo "Downloading & unpacking HDF5 ${HDF5_VERSION}"
 HDF5_TAG="hdf5_${HDF5_VERSION}"
@@ -26,4 +37,8 @@ echo "Cleaning up unnecessary files"
 rm -r hdf5-$HDF5_TAG
 rm $HDF5_TAG.tar.gz
 
-yum -y erase zlib-devel
+if which yum; then
+    yum erase -y zlib-devel
+else
+    apk del zlib-dev
+fi

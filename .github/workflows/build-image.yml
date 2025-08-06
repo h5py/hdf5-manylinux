@@ -22,6 +22,16 @@ jobs:
            arch: aarch64
            platforms: linux/arm64
            runs-on: ubuntu-24.04-arm
+         - prefix: musllinux
+           version: '1_2'
+           arch: x86_64
+           platforms: linux/amd64
+           runs-on: ubuntu-latest
+         - prefix: musllinux
+           version: '1_2'
+           arch: aarch64
+           platforms: linux/arm64
+           runs-on: ubuntu-24.04-arm
     steps:
     - uses: actions/checkout@v4
 
