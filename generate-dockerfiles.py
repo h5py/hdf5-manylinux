@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = [click]
+# dependencies = ['click']
 # ///
 import sys
 from pathlib import Path
