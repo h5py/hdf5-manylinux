@@ -32,15 +32,17 @@ def main(argv: list[str] | None = None) -> int:
     output_dir = ROOT / "Dockerfiles"
     output_dir.mkdir(exist_ok=True)
     for (prefix, version_id), arch in product(BASE_IMAGE_IDS, ARCHS):
-        stem = f"{prefix}_{version_id}_{arch}"
-        output_dir.joinpath(stem).write_text(
+        out_file = output_dir / f"{prefix}_{version_id}_{arch}"
+
+        out_file.write_text(
             template.format(
                 prefix=prefix,
                 version_id=version_id,
                 arch=arch,
             )
         )
-
+        print(f"Wrote {out_file}")
+        
 
 if __name__ == "__main__":
     sys.exit(main())
