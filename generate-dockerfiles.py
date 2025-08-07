@@ -29,8 +29,7 @@ ARCHS = ["x86_64", "aarch64"]
 
 
 def main(argv: list[str] | None = None) -> int:
-    output_dir = ROOT / "Dockerfiles"
-    output_dir.mkdir(exist_ok=True)
+    output_dir = ROOT
     for (prefix, version_id), arch in product(BASE_IMAGE_IDS, ARCHS):
         out_file = output_dir / f"{prefix}_{version_id}_{arch}"
 
