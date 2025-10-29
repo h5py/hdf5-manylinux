@@ -22,6 +22,11 @@ jobs:
            arch: aarch64
            platforms: linux/arm64
            runs-on: ubuntu-24.04-arm
+         - prefix: manylinux
+           version: '2_28'
+           arch: ppc64le
+           platforms: linux/ppc64le
+           runs-on: ubuntu-latest
          - prefix: musllinux
            version: '1_2'
            arch: x86_64
