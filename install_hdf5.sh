@@ -53,6 +53,7 @@ mkdir build
 cmake -S . -B build \
     -D CMAKE_BUILD_TYPE=Release \
     -D CMAKE_INSTALL_PREFIX="$HDF5_DIR" \
+    -D CMAKE_INSTALL_LIBDIR=lib \
     -D BUILD_TESTING=OFF \
     -D BUILD_STATIC_LIBS=OFF \
     -D HDF5_BUILD_EXAMPLES=OFF \
