@@ -4,7 +4,7 @@ set -euo pipefail
 
 pushd /tmp
 
-aec_version="1.1.4"
+aec_version="1.1.7"
 
 echo "Downloading libaec"
 curl -fsSLO https://github.com/Deutsches-Klimarechenzentrum/libaec/releases/download/v${aec_version}/libaec-${aec_version}.tar.gz
